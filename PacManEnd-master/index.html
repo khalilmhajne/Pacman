@@ -1,0 +1,247 @@
+<html>
+
+
+<head>
+    <link rel="stylesheet" href="style.css">
+ 
+    <script src="./jquery-3.4.1.slim.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+    <script type="text/javascript" src="./f1.js"></script>
+    <script type="text/javascript" src="./app.js"></script>
+
+</head>
+
+
+
+
+
+<body>
+
+
+<header >
+  
+  <img src="pacMan.png" alt="pacManLogo" height="40px" style="float: left; padding-top:10 ;padding-left: 10;" onclick= "showPage('Welcome');">
+
+<div class="menu"   >
+    
+    <a onclick= "ShowWelcomePage()" id = "welcomeUserName">Welcome</a>
+    <a onclick= "LoginFormShow()" id= "loginMenu">Login</a>
+    <a onclick= "showRegisterForm()"  id= "registerMenu"> Register</a>
+    <a onclick= "resetSettingsForm()"  style="display: none;" id= "settingsMenu"> Settings</a>
+    <a id="buttomAbout"  onclick="showAbout()" >About</a>
+    <a onclick= "logout()" style="display: none;" id= "logoutMenu"> Log Out</a>
+  </div>
+
+
+</header>
+
+<div class="welcomePage" id="WelcomePage">
+  <div style="padding-top:20%;padding-left: 37%;">
+  <button onclick= "LoginFormShow()" >SignIn</button>
+  <button onclick="showRegisterForm()">Register</button>
+</div>  
+</div>
+<div id = "Login" style="display: none;" >
+  
+  
+
+  <div class="login-box" >
+    <h2 style="font-family:Georgia, 'Times New Roman', Times, serif; color: white; font-size: 70;margin-bottom: 10;">Login</h2>
+    <form id="LoginForm" name="LoginForm" autocomplete="off">
+    <div class="user-box">
+      <label for="LoginUsername" style="color: white;font-weight: 900; ">Username</label>
+      <input id="LoginUsername" type="text" name="LoginUsername" class="SignInInput" required="">
+      
+    </div>
+    <br>
+  
+ 
+    <div class="user-box">
+      <label style="color: white;font-weight: 900; ">Password</label>
+      <input id="LoginPassword" type="password" name="LoginPassword" class="SignInInput" required="">
+    </div>
+    <button id="SignInButton" name ="SignInButton" onclick="signIn()" type="button" >
+      Sign In
+    </button>
+    </form>
+  
+  </div>
+ 
+</div>
+<div id = "Register" style="display: none;" >
+  
+  <div class="signUp-box" >
+    <h2 style="font-family:Georgia, 'Times New Roman', Times, serif; color: white; font-size: 70;margin-bottom: 10;">Register</h2>
+    <form id="RegisterForm" name="RegisterForm" autocomplete="off" >
+    <div class="user-box">
+      <label>Username&nbsp;</label>
+      <input id="Username" name="Username" type="text" required="" class="SignUpInput">
+  
+    </div>
+    <div class="user-box">
+      <label>Password&nbsp;</label>
+      <input id="Password" name="Password" type="password"  required="" class="SignUpInput">
+    
+    </div>
+    <div class="user-box">
+      <label>Full Name</label>
+
+      <input id="FullName" name="FullName" type="text"  required="" class="SignUpInput">
+     
+    </div>
+    <div class="user-box">
+      <label>Email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+      <input id="email" name="email" type="text" required="" class="SignUpInput">
+   
+    </div>
+    <div class="user-box">
+    <label>Birth Date&nbsp;&nbsp;</label>
+    <input type="date" id="date" name="date"class="SignUpInput">
+   
+    </div>
+    <button  id="SignUp" name="SignUp"  onclick="SignUp()"  type="button">
+      Sign Up
+    </button>
+    </form>
+  </div>
+
+</div>
+
+
+<div class="settings" style="display:none">
+  <label class="font">Setting</label>
+<p class="font" ><strong>Note:</strong> Type something in the text input box and press enter key.</p>   
+<div>
+  <label class="font">Press key to go UP:</label>
+  <input id="up" class = "input" type="text" />
+</div>
+<div>
+  <label class="font">Press key to go DOWN:</label>
+  <input  id="down" class = "input" type="text" />
+</div>
+<div>
+  <label class="font">Press key to go LEFT:</label>
+  <input  id="left" class = "input" type="text" />
+</div>
+<div>
+  <label class="font">Press key to go RIGHT:</label>
+  <input  id="right" class = "input" type="text" />
+</div>
+<div>
+  <label class="font">Number of the balls (food) ( 50 - 90 ):</label>
+  <input id="balls" class = "input" type="text" />
+</div>
+
+<div>
+  <label class="font"> The Time (Minimum 60 seconds ) s :</label>
+  <input id="time" class = "input" type="text" />
+</div>
+<div>
+  <label class="font">Number of monsters ( 1 - 4 ):</label>
+  <input id="monsters" class = "input" type="text" />
+</div>
+
+<button onclick="random_settings()" class="button">Random </button>
+<button onclick="Start()" class="button" >Start</button>
+</div>
+
+
+
+<div  style="text-align: center;  background: #3c4375; padding-top: 50px;
+padding-bottom: 20px;
+color: white;">
+<div id="score" class="Game" >
+  <label for="lblScore">SCORE:</label>
+  <input id="lblScore" type="text" style="width: 3%;"/>
+</div>
+<div id="Time" class="Game" >
+  <label for="lblTime">TIME:</label>
+  <input id="lblTime" type="text" style="width: 3%;"/>
+</div>
+<div id="hl" class="Game">
+  <p id="remain"> 
+  </p>
+</div>
+<div id="lives" class="Game">
+    <img id="0" src="./images/health.png" alt="health" width="15" height="15" style="display: none"  >
+    <img id="1" src="./images/health.png" alt="health" width="15" height="15" style="display: none"  >
+    <img id="2" src="./images/health.png" alt="health" width="15" height="15" style="display: none"  >
+    <img id="3" src="./images/health.png" alt="health" width="15" height="15"  style="display: none" >
+    <img id="4" src="./images/health.png" alt="health" width="15" height="15" style="display: none"  >
+    <img id="5" src="./images/health.png" alt="health" width="15" height="15" style="display: none"  >
+    <img id="6" src="./images/health.png" alt="health" width="15" height="15" style="display: none"  >
+    <img id="7" src="./images/health.png" alt="health" width="15" height="15" style="display: none"  >
+</div>
+
+<div id="voice" class="Game" >
+  <img id= "voice_img" src="./images/music.jpg" alt="voice" width="30" height="30" onclick="backgroundMusic()" >
+</div>
+</div>
+
+<button id="playagain" onclick="setting()" class="button" style="display: none;">Play again</button>
+<div id="game" class="Game" style="text-align: center;">
+  <canvas id="canvas" height="600" width="600" ></canvas>
+</div>
+<div id="game setting" class="Game" style="text-align:center; background: #3c4375; color: white "  >
+  <ul>
+    <li id = "U" class ="dir"></li>
+    <li id = "D" class ="dir"></li>
+    <li id = "R" class ="dir"></li>
+    <li id = "L" class ="dir"></li>
+    <li id = "B" class ="dir"> </li>
+    <li id = "T" class ="dir"></li>
+    <li id = "M" class ="dir"></li>
+    </ul>
+</div>
+
+ 
+ <!-- document.getElementById("user_name").style.color = " #f3f3f3"  ; -->
+<script> //hide
+$(".Game").css("display","none");
+var down = 40
+var right = 39
+var up = 38
+var left = 37
+//press key ... in Setting Page
+  $(document).on("keydown" , "input", function(e){
+      if(this.id == "down"){
+    down=e.keyCode
+        }
+  if(this.id == "right"){
+    right=e.keyCode
+      }
+  if(this.id == "up"){
+    up = e.keyCode
+        }
+  if(this.id == "left"){
+    left = e.keyCode
+      }
+  if(e.keyCode==37 || e.keyCode==38 || e.keyCode==39 || e.keyCode==40 ){
+    this.value = e.key
+  }
+  });
+
+
+
+  
+</script>
+
+
+
+
+<footer>
+
+</footer>
+
+
+
+</body>
+
+
+
+
+
+
+
+</html>
